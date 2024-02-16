@@ -147,6 +147,13 @@ function App() {
       performance.measure(timing.name, timing.measure);
     }
   }
+  /**
+   * This mocks a task happening when the component renders (f.e change
+   * detection). It consists of a inneficient and slow calculation of a
+   * Fibonacci number. Each calculation is measured and registered to
+   * Chrome using the User Timings API and a proposed predefined
+   * format to extend the Performance Panel.
+   */
   function mockChangeDetection() {
     return fib(5);
   }
