@@ -24,7 +24,14 @@ the `mockChangeDetection` function.
 *_Note: to trigger the measured tasks you need to add a corgi to the collage
 using the "Add new Corgi" button._*
 
-## Example
 
+## Try it
+
+A deployed version of the application is available at https://corgi-collage-react.vercel.app/.
+You need to install run a Chrome version that contains the changes to
+DevTools that proposed User Timing API format.
+
+
+## Example
 
 ![extension track](./public/example.png "Extension track")
