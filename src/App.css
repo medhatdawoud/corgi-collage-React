@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+}
+
+.corgi-logo {
+  height: 100px;
+  pointer-events: none;
+  aspect-ratio: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .corgi-logo {
+    animation: corgi-logo-spin infinite 20s linear;
+  }
+}
+
+.header {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.corgi {
+  height: auto;
+  width: 300px;
+  aspect-ratio: 1;
+}
+
+.corgi-zone {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes corgi-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.corgi-component {
+  flex: 30% 1;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.new-input-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 250px;
+  margin: 10px;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 500px;
+}
+
+.find-input-wrap {
+  width: 500px;
+}
