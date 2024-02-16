@@ -20,3 +20,11 @@ displayed with in the Performance Panel timeline.
 
 The tasks are run and measured in the [main component](./src/App.js) in
 the `mockChangeDetection` function.
+
+*_Note: to trigger the measured tasks you need to add a corgi to the collage
+using the "Add new Corgi" button._*
+
+## Example
+
+
+![extension track](./public/example.png "Extension track")
