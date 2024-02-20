@@ -142,7 +142,7 @@ function App() {
         description: "This emulates a top level rendering task",
       },
     };
-    performance.measure("devtools-entry-React extension", measure);
+    performance.measure("devtools-React-flame-chart-entry", measure);
     for (const timing of timings) {
       performance.measure(timing.name, timing.measure);
     }
@@ -174,7 +174,7 @@ function App() {
         description: "This emulates a rendering task",
       },
     };
-    timings.push({ name: "devtools-entry-React extension", measure });
+    timings.push({ name: "devtools-React-flame-chart-entry", measure });
 
     return result;
   }
