@@ -138,8 +138,8 @@ function App() {
       detail: {
         name: "Mock change detection cycle",
         color: "rgba(10 126 164 / 100%)",
-        group: "React Extension Track",
-        description: "This emulates a top level rendering task",
+        track: "React Extension Track",
+        detailsText: "This emulates a top level rendering task",
       },
     };
     performance.measure("devtools-React-flame-chart-entry", measure);
@@ -170,8 +170,8 @@ function App() {
       detail: {
         name: `Computation of ${val}`,
         color: `rgba(10 126 164 / ${Math.round((val / 5) * 100)}%)`,
-        group: "React Extension Track",
-        description: "This emulates a rendering task",
+        track: "React Extension Track",
+        detailsText: "This emulates a rendering task",
       },
     };
     timings.push({ name: "devtools-React-flame-chart-entry", measure });
