@@ -21,15 +21,14 @@ displayed with in the Performance Panel timeline.
 The tasks are run and measured in the [main component](./src/App.js) in
 the `mockChangeDetection` function.
 
-
 ## Try it
 
 A deployed version of the application is available at https://corgi-collage-react.vercel.app/.
 You need to run a Chrome version that contains the changes to
 DevTools that proposed User Timing API format.
 
-*_Note: to trigger the measured tasks you need to add a corgi to the collage
-using the "Add new Corgi" button._*
+_*Note: to trigger the measured tasks you need to add a corgi to the collage
+using the "Add new Corgi" button.*_
 
 ## Example
 

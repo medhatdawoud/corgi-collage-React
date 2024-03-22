@@ -136,13 +136,22 @@ function App() {
       start: then,
       end: performance.now(),
       detail: {
-        name: "Mock change detection cycle",
-        color: "rgba(10 126 164 / 100%)",
-        track: "React Extension Track",
-        detailsText: "This emulates a top level rendering task",
+        devtools: {
+          metadata: {
+            extensionName: "React Extension",
+            dataType: "flame-chart-entry",
+          },
+          color: "teal",
+          track: "An Extension Track",
+          detailsPairs: [
+            ["Description", "This is a top level rendering task"],
+            ["Tip", "A tip to improve this"],
+          ],
+          hintText: "A hint if needed",
+        },
       },
     };
-    performance.measure("devtools-React-flame-chart-entry", measure);
+    performance.measure("An extension measurement", measure);
     for (const timing of timings) {
       performance.measure(timing.name, timing.measure);
     }
@@ -155,6 +164,25 @@ function App() {
    * format to extend the Performance Panel.
    */
   function mockChangeDetection() {
+    const measure = {
+      detail: {
+        devtools: {
+          metadata: {
+            extensionName: "React Extension",
+            dataType: "marker",
+          },
+          color: "red",
+          detailsPairs: [
+            [
+              "Description",
+              "This marks the start of a task",
+            ],
+          ],
+          hintText: "A mark",
+        },
+      },
+    };
+    performance.mark("Custom mark", measure);
     return fib(5);
   }
   function fib(val) {
@@ -168,13 +196,22 @@ function App() {
       start: then,
       end: performance.now(),
       detail: {
-        name: `Computation of ${val}`,
-        color: `rgba(10 126 164 / ${Math.round((val / 5) * 100)}%)`,
-        track: "React Extension Track",
-        detailsText: "This emulates a rendering task",
+        devtools: {
+          metadata: {
+            extensionName: "React Extension",
+            dataType: "flame-chart-entry",
+          },
+          color: "green",
+          track: "An Extension Track",
+          hintText: "This is a rendering task",
+          detailsPairs: [
+            ["Description", "This is a child task"],
+            ["Tip", "Do something about it"],
+          ],
+        },
       },
     };
-    timings.push({ name: "devtools-React-flame-chart-entry", measure });
+    timings.push({ name: `Computation of ${val}`, measure });
 
     return result;
   }
