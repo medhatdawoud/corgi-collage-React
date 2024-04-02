@@ -141,7 +141,7 @@ function App() {
             extensionName: "React Extension",
             dataType: "flame-chart-entry",
           },
-          color: "teal",
+          color: "primary",
           track: "An Extension Track",
           detailsPairs: [
             ["Description", "This is a top level rendering task"],
@@ -171,7 +171,7 @@ function App() {
             extensionName: "React Extension",
             dataType: "marker",
           },
-          color: "red",
+          color: "error",
           detailsPairs: [
             [
               "Description",
@@ -201,7 +201,7 @@ function App() {
             extensionName: "React Extension",
             dataType: "flame-chart-entry",
           },
-          color: "green",
+          color: "tertiary-light",
           track: "An Extension Track",
           hintText: "This is a rendering task",
           detailsPairs: [
