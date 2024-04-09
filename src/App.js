@@ -139,7 +139,7 @@ function App() {
         devtools: {
           metadata: {
             extensionName: "React Extension",
-            dataType: "flame-chart-entry",
+            dataType: "track-entry",
           },
           color: "primary",
           track: "An Extension Track",
@@ -199,7 +199,7 @@ function App() {
         devtools: {
           metadata: {
             extensionName: "React Extension",
-            dataType: "flame-chart-entry",
+            dataType: "track-entry",
           },
           color: "tertiary-light",
           track: "An Extension Track",
