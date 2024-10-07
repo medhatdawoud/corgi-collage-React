@@ -1,17 +1,21 @@
 import "./App.css";
-import React from "react";
-
+import React, { Profiler, memo, useTransition } from 'react';
+import CorgiCollage from './CorgiCollage.js'
+let CorgiCollageToUse = CorgiCollage;
+CorgiCollageToUse = memo(CorgiCollage);
 function App() {
-  const timings = [];
   const [corgis, setCorgis] = React.useState([]);
   const [newCorgiName, setNewCorgiName] = React.useState("");
   const [newCorgiSecurityPhoto, setNewCorgiSecurityPhoto] = React.useState("");
   const [corgiSearch, setCorgiSearch] = React.useState("");
+  const [, startTransition] = useTransition();
+
   React.useEffect(() => {
     setNewCorgiSecurityPhoto(corgiImages[1]);
     setNewCorgiName(corgiNames[0]);
   }, []);
   return (
+    <Profiler id="profiler">
     <div className="App">
       <h2 className="text-base font-semibold leading-7 text-indigo-600">
         React example
@@ -35,7 +39,7 @@ function App() {
             <input
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               value={newCorgiName}
-              onChange={(e) => setNewCorgiName(e.target.value)}
+              onChange={ (e) => startTransition(() => {setNewCorgiName(e.target.value);})}
             />
           </div>
           <div>
@@ -101,26 +105,15 @@ function App() {
         </div>
       </div>
 
-      <div className="corgi-zone">
-        {corgis
-          .filter(
-            (corgi) =>
-              corgi.name.toLowerCase().includes(corgiSearch.toLowerCase()) ||
-              corgiSearch === "",
-          )
-          .map((corgi, id) => (
-            <Corgi name={corgi.name} image={corgi.image} key={id}></Corgi>
-          ))}
-      </div>
+      <CorgiCollageToUse corgis={corgis} corgiSearch={corgiSearch}></CorgiCollageToUse>
     </div>
+    </Profiler>
   );
 
   function appendACorgi() {
     if (!newCorgiName || !newCorgiSecurityPhoto) {
       return;
     }
-    const then = performance.now();
-    mockChangeDetection();
     const newCorgiCount = corgis.length + 1;
     const corgiName = newCorgiName;
     const corgiImage = newCorgiSecurityPhoto;
@@ -132,98 +125,7 @@ function App() {
       setNewCorgiName("");
     }
     setCorgis([...corgis, { name: corgiName, image: corgiImage }]);
-    const measure = {
-      start: then,
-      end: performance.now(),
-      detail: {
-        devtools: {
-          metadata: {
-            extensionName: "React Extension",
-            dataType: "track-entry",
-          },
-          color: "primary",
-          track: "An Extension Track",
-          detailsPairs: [
-            ["Description", "This is a top level rendering task"],
-            ["Tip", "A tip to improve this"],
-          ],
-          hintText: "A hint if needed",
-        },
-      },
-    };
-    performance.measure("An extension measurement", measure);
-    for (const timing of timings) {
-      performance.measure(timing.name, timing.measure);
-    }
   }
-  /**
-   * This mocks a task happening when the component renders (f.e change
-   * detection). It consists of a inneficient and slow calculation of a
-   * Fibonacci number. Each calculation is measured and registered to
-   * Chrome using the User Timings API and a proposed predefined
-   * format to extend the Performance Panel.
-   */
-  function mockChangeDetection() {
-    const measure = {
-      detail: {
-        devtools: {
-          metadata: {
-            extensionName: "React Extension",
-            dataType: "marker",
-          },
-          color: "error",
-          detailsPairs: [
-            [
-              "Description",
-              "This marks the start of a task",
-            ],
-          ],
-          hintText: "A mark",
-        },
-      },
-    };
-    performance.mark("Custom mark", measure);
-    return fib(5);
-  }
-  function fib(val) {
-    const then = performance.now();
-    while (performance.now() - then < 200 * (1 + Math.random()));
-    if (val === 0 || val === 1) {
-      return val;
-    }
-    const result = fib(val - 1) + fib(val - 2);
-    const measure = {
-      start: then,
-      end: performance.now(),
-      detail: {
-        devtools: {
-          metadata: {
-            extensionName: "React Extension",
-            dataType: "track-entry",
-          },
-          color: "tertiary-light",
-          track: "An Extension Track",
-          hintText: "This is a rendering task",
-          detailsPairs: [
-            ["Description", "This is a child task"],
-            ["Tip", "Do something about it"],
-          ],
-        },
-      },
-    };
-    timings.push({ name: `Computation of ${val}`, measure });
-
-    return result;
-  }
-}
-
-function Corgi({ image, name }) {
-  return (
-    <div className="corgi-component">
-      <div>{name}</div>
-      <img src={image} className="corgi" alt={`${name} security`} />
-    </div>
-  );
 }
 
 const corgiImages = [
@@ -247,4 +149,5 @@ const corgiNames = [
   "Frederick",
   "Ivan",
 ];
+
 export default App;
