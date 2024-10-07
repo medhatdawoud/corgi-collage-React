@@ -2,7 +2,7 @@ import "./App.css";
 import React, { Profiler, memo, useTransition } from 'react';
 import CorgiCollage from './CorgiCollage.js'
 let CorgiCollageToUse = CorgiCollage;
-CorgiCollageToUse = memo(CorgiCollage);
+// CorgiCollageToUse = memo(CorgiCollage);
 function App() {
   const [corgis, setCorgis] = React.useState([]);
   const [newCorgiName, setNewCorgiName] = React.useState("");

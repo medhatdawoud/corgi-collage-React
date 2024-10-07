@@ -12,7 +12,7 @@ git clone https://github.com/and-oli/corgi-collage-React.git
 ```
 2. Install deps and start server
 ```bash
-npm i && npm run start
+npm i --force && npm run start
 ```
 
 ## Note about the set up
