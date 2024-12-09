@@ -10,8 +10,8 @@ function Corgi({ image, name }) {
       </div>
     );
   }
-  
-  
+
+
   function CorgiCollage({corgis, corgiSearch}) {
     return (
       <div className="corgi-zone">
@@ -21,7 +21,7 @@ function Corgi({ image, name }) {
             corgi.name.toLowerCase().includes(corgiSearch.toLowerCase()) ||
             corgiSearch === "",
         )
-        .map((corgi, id) => 
+        .map((corgi, id) =>
           {
             return <Corgi name={corgi.name} image={corgi.image} key={id}></Corgi>
           }
